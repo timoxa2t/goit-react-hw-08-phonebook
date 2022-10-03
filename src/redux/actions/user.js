@@ -9,16 +9,44 @@ const GET_CURRENT = "currrent"
 export const registerNewUser = createAsyncThunk(
     REGISTER,
     async (user) => {
-        const response = await swaggerApi.registerUser(user)
-        return response.data
+        try{
+            const response = await swaggerApi.registerUser(user)
+            localStorage.token = response.data.token
+            localStorage.email = response.data.user.email
+            return response.data
+        }
+        catch(e){
+            alert(e.message)
+            return {
+                user: {
+                    name: "",
+                    email: ""
+                },
+                token: ""
+            }
+        }
     }
   )
 
 export const loginUser = createAsyncThunk(
     LOGIN,
     async (user) => {
-        const response = await swaggerApi.loginUser(user)
-        return response.data
+        try{
+            const response = await swaggerApi.loginUser(user)
+            localStorage.token = response.data.token
+            localStorage.email = response.data.user.email
+            return response.data
+        }
+        catch(e){
+            alert(e.message)
+            return {
+                user: {
+                    name: "",
+                    email: ""
+                },
+                token: ""
+            }
+        }
     }
   )
 
@@ -26,6 +54,8 @@ export const logoutUser = createAsyncThunk(
     LOGOUT,
     async ({token, callback}) => {
         const response = await swaggerApi.logoutUser(token)
+        localStorage.token = ''
+        localStorage.email = ''
         callback()
         return response.data
     }

@@ -17,7 +17,7 @@ export default function Register(){
     }
 
     useEffect(() => {
-        if(token !== ""){
+        if(token && token !== ""){
           navigate("/goit-react-hw-08-phonebook/contacts", { replace: true })
         }
       }, [token, navigate])

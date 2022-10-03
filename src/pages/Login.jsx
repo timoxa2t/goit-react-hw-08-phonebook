@@ -14,7 +14,7 @@ export default function Login(){
 
     useEffect(() => {
 
-        if(token !== ""){
+        if(token && token !== ""){
           navigate("/goit-react-hw-08-phonebook/contacts")
         }
       }, [token, navigate])

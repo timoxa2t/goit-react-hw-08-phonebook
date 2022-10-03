@@ -8,9 +8,9 @@ const inititalState = {
       filter: ''
     },
     user: {
-        email: '',
+        email: localStorage.email,
         name: '',
-        token: ''
+        token: localStorage.token
     }
   }
   

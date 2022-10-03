@@ -32,7 +32,7 @@ export default function Contacts(){
   }
 
   useEffect(() => {
-    if(token === ""){
+    if(!token || token === ""){
       navigate("/goit-react-hw-08-phonebook/login", { replace: true })
     }else{
       dispatch(getSavedContacts(token))
